@@ -10,7 +10,7 @@ function  reload(){
 async function fetchNews(query){
     try{
         const res= await fetch(`${url}${query}&apiKey=${API_KEY}`);
-
+        console.log(res);
         const data = await res.json();
 
         console.log(data);
@@ -26,14 +26,14 @@ async function fetchNews(query){
 
 }
 
-function bindData(articles){
+async function bindData(articles){
 
     const cardsContainer= document.getElementById("cards-container");
     const newsCardTemplate= document.getElementById("template-news-card");
 
     cardsContainer.innerHTML='';
 
-    articles?.forEach((article)=>{
+    await articles?.forEach((article)=>{
             if(!article.urlToImage) return;
             const cardClone= newsCardTemplate.content.cloneNode(true);
            fillDataInCard(cardClone,article);

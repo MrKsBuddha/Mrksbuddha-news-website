@@ -12,7 +12,7 @@ async function fetchNews(query){
         const res= await fetch(`${url}${query}&apiKey=${API_KEY}`);
 
         const data = await res.json();
-                
+
         console.log(data);
         bindData(data.articles);
     }catch(error){
@@ -33,7 +33,7 @@ function bindData(articles){
 
     cardsContainer.innerHTML='';
 
-    articles.forEach((article)=>{
+    articles?.forEach((article)=>{
             if(!article.urlToImage) return;
             const cardClone= newsCardTemplate.content.cloneNode(true);
            fillDataInCard(cardClone,article);

@@ -8,15 +8,21 @@ function  reload(){
 }
 
 async function fetchNews(query){
+    try{
+        const res= await fetch(`${url}${query}&apiKey=${API_KEY}`);
 
-    const res= await fetch(`${url}${query}&apiKey=${API_KEY}`);
+        const data = await res.json();
+                
+        console.log(data);
+        bindData(data.articles);
+    }catch(error){
+        console.log(error)
+    }
 
-    const data = await res.json();
-
-    console.log(data);
+  
    
 
-    bindData(data.articles);
+    
 
 }
 
